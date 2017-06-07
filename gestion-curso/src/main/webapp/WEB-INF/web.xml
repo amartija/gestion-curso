@@ -4,26 +4,8 @@
   <welcome-file-list>
     <welcome-file>index.jsp</welcome-file>
   </welcome-file-list>
-  <servlet>
-    <description>Este servlet va a gestionar las peticiones relacionadas con los alumnos</description>
-    <display-name>AlumnoServlet</display-name>
-    <servlet-name>AlumnoServlet</servlet-name>
-    <servlet-class>com.ipartek.formacion.controller.AlumnoServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>AlumnoServlet</servlet-name>
-    <url-pattern>/alumno.do</url-pattern>
-  </servlet-mapping>
-  <servlet>
-    <description>Este servlet va a gestionar las peticiones relacionadas con los profesores</description>
-    <display-name>ProfesorServlet</display-name>
-    <servlet-name>ProfesorServlet</servlet-name>
-    <servlet-class>com.ipartek.formacion.controller.ProfesorServlet</servlet-class>
-  </servlet>
-  <servlet-mapping>
-    <servlet-name>ProfesorServlet</servlet-name>
-    <url-pattern>/profesor.do</url-pattern>
-  </servlet-mapping>
+
+
   <servlet>
     <description>Este servlet va a gestionar las peticiones relacionadas con los cursos</description>
     <display-name>CursoServlet</display-name>

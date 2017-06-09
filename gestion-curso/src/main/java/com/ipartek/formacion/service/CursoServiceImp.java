@@ -2,9 +2,12 @@ package com.ipartek.formacion.service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import com.ipartek.formacion.dbms.dao.CursoDAO;
 import com.ipartek.formacion.dbms.persistence.Curso;
 
+@Service
 public class CursoServiceImp implements CursoService {
 
 	@Override

@@ -6,6 +6,8 @@ import java.util.List;
 
 import javax.annotation.Resource;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
@@ -31,11 +33,10 @@ public class CursoController {
 	@Autowired
 	private CursoService cs;
 
-	// private static final Logger logger =
-	// LoggerFactory.getLogger(CursoController.class);
+	private static final Logger logger = LoggerFactory.getLogger(CursoController.class);
 	private ModelAndView mav = null;
 
-	@Resource(name = "cursoValidator") // @Autowired
+	@Resource(name = "cursoValidator")
 	private Validator validator = null;
 
 	@InitBinder
@@ -49,11 +50,11 @@ public class CursoController {
 	@RequestMapping(method = RequestMethod.GET)
 	public ModelAndView getAll() {
 
-		mav = new ModelAndView("cursos");
+		mav = new ModelAndView("cursos/cursos");
 
-		// cargar la lista de alumnos
+		// cargar la lista de cursos
 		List<Curso> cursos = cs.getAll();
-
+		logger.info("entra en el getAll");
 		// engacharla al nodelandview
 		mav.addObject("listadoCursos", cursos);
 
@@ -69,17 +70,17 @@ public class CursoController {
 		String destino = " ";
 		if (bindingResult.hasErrors()) {
 
-			// logger.trace("curso tiene errores");
+			logger.trace("curso tiene errores");
 			destino = "cursoform";
 		} else {
 
 			destino = "redirect:/cursos";
 
 			if (curso.getCodigo() > Curso.CODIGO_NULO) {
-				// logger.info(curso.toString());
+				logger.info(curso.toString());
 				cs.update(curso);
 			} else {
-				// logger.info(curso.toString());
+				logger.info(curso.toString());
 				cs.create(curso);
 			}
 		}

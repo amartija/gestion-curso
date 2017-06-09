@@ -1,7 +1,5 @@
 package com.ipartek.formacion.controller;
 
-import java.text.DateFormat;
-import java.util.Date;
 import java.util.Locale;
 
 import javax.servlet.http.HttpServletRequest;
@@ -34,14 +32,15 @@ public class HomeController {
 	@RequestMapping(method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
-		// logger.info("Welcome home! The client locale is {}.",
-		// as.getAll().toString());
-		Date date = new Date();
-		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		logger.info("Welcome home! The client locale is {}.");
+		// Date date = new Date();
+		// DateFormat dateFormat =
+		// DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG,
+		// locale);
 
-		String formattedDate = dateFormat.format(date);
+		// String formattedDate = dateFormat.format(date);
 
-		model.addAttribute("serverTime", formattedDate);
+		// model.addAttribute("serverTime", formattedDate);
 
 		return "home";
 	}

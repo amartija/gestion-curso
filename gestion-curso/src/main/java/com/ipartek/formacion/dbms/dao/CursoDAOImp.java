@@ -4,8 +4,11 @@ import java.util.List;
 
 import javax.sql.DataSource;
 
+import org.springframework.stereotype.Repository;
+
 import com.ipartek.formacion.dbms.persistence.Curso;
 
+@Repository("cursoDaoImp")
 public class CursoDAOImp implements CursoDAO {
 
 	@Override

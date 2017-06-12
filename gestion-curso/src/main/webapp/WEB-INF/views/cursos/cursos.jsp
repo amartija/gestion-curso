@@ -19,10 +19,10 @@
 			</div>
 			<c:choose>
 				<c:when test="${not empty listadoCursos}">
-					<c:forEach var="coleccion" items="${listadoCursos}">
+					<c:forEach var="curso" items="${listadoCursos}">
 						<div class="row">
 							<div class="col-xs-4">
-								<a href="<c:url value='/cursos/${curso.codigo}'/>">${curso.codCodigo}</a>
+								<a href="<c:url value='/cursos/${curso.codigo}'/>">${curso.codCurso}</a>
 							</div>
 							<div class="col-xs-5">
 								${curso.nombre}

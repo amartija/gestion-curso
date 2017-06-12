@@ -1,19 +1,14 @@
 package com.ipartek.formacion.controller;
 
-import java.sql.Date;
-import java.text.SimpleDateFormat;
+import java.io.IOException;
 import java.util.List;
-
-import javax.annotation.Resource;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.beans.propertyeditors.CustomDateEditor;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.InitBinder;
@@ -22,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.ipartek.formacion.dbms.persistence.Curso;
 import com.ipartek.formacion.service.CursoService;
@@ -36,14 +32,13 @@ public class CursoController {
 	private static final Logger logger = LoggerFactory.getLogger(CursoController.class);
 	private ModelAndView mav = null;
 
-	@Resource(name = "cursoValidator")
-	private Validator validator = null;
+	@Autowired
+	private CursoValidator validator;
 
 	@InitBinder
 	private void initBinder(WebDataBinder binder) {
 
 		binder.setValidator(validator);
-		binder.registerCustomEditor(Date.class, new CustomDateEditor(new SimpleDateFormat("dd/MM/yyyy"), false, 10));
 
 	}
 
@@ -55,17 +50,18 @@ public class CursoController {
 		// cargar la lista de cursos
 		List<Curso> cursos = cs.getAll();
 		logger.info("entra en el getAll");
-		// engacharla al nodelandview
+		// engancharla al modelandview
 		mav.addObject("listadoCursos", cursos);
 
-		// logger.trace("Pasa por getAll()");
+		logger.trace("Pasa por getAll()");
 
 		return mav;
 
 	}
 
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
-	public String saveCurso(Model model, @ModelAttribute("curso") @Validated Curso curso, BindingResult bindingResult) {
+	public String saveCurso(Model model, @ModelAttribute("curso") @Validated Curso curso, BindingResult bindingResult,
+			RedirectAttributes redirectMap) throws IOException {
 
 		String destino = " ";
 		if (bindingResult.hasErrors()) {
@@ -89,8 +85,10 @@ public class CursoController {
 
 	@RequestMapping(value = "/{id}")
 	public ModelAndView getById(@PathVariable("id") int id) {
-		mav = new ModelAndView("cursoform");
-		mav.addObject("cursp", cs.getById(id));
+		mav = new ModelAndView("cursos/curso");
+
+		mav.addObject("curso", cs.getById(id));
+		logger.info("cs.getById(id)");
 		return mav;
 
 	}
@@ -107,7 +105,21 @@ public class CursoController {
 	public String addCurso(Model model) {
 		model.addAttribute("curso", new Curso());
 
-		return "cursoform";
+		return "cursos/cursoform";
+	}
+
+	@RequestMapping("/editCurso/{codigo}")
+	public ModelAndView edit(@PathVariable("codigo") int codigo) {
+
+		mav = new ModelAndView("cursos/cursoform");
+		Curso cur = null;
+		Curso curs = null;
+		cur = cs.getById(codigo);
+		curs = cs.update(cur);
+		logger.info(curs.toString() + " modificado");
+		mav.addObject("curso", curs);
+
+		return mav;
 	}
 
 }

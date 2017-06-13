@@ -50,4 +50,10 @@ public class CursoServiceImp implements CursoService {
 
 	}
 
+	@Override
+	public Curso getByCodCurso(String codCurso) {
+
+		return cursoDao.getByCodCurso(codCurso);
+	}
+
 }

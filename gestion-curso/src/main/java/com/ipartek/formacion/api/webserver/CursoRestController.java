@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ipartek.formacion.dbms.persistence.Curso;
@@ -58,6 +59,26 @@ public class CursoRestController {
 		} else {
 
 			response = new ResponseEntity<List<Curso>>(cursos, HttpStatus.OK);
+
+		}
+
+		return response;
+	}
+
+	@RequestMapping(value = "/{codCurso}", method = RequestMethod.GET, produces = { MediaType.APPLICATION_JSON_VALUE })
+	public ResponseEntity<Curso> getByCodCurso(@RequestParam(value = "codCurso") String codCurso) {
+
+		Curso curso = cs.getByCodCurso(codCurso);
+
+		ResponseEntity<Curso> response = null;
+
+		if (curso == null) {
+
+			response = new ResponseEntity<Curso>(HttpStatus.NOT_FOUND);
+
+		} else {
+
+			response = new ResponseEntity<Curso>(curso, HttpStatus.OK);
 
 		}
 

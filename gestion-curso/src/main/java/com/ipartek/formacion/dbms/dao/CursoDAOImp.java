@@ -118,4 +118,17 @@ public class CursoDAOImp implements CursoDAO {
 
 	}
 
+	@Override
+	public Curso getByCodCurso(String codCurso) {
+		Curso curso = null;
+		this.jdbcCall = new SimpleJdbcCall(dataSource);
+		final String SQL = "CALL cursogetByCodCurso(?)";
+		try {
+			curso = template.queryForObject(SQL, new CursoMapper(), new Object[] { codCurso });
+		} catch (EmptyResultDataAccessException e) {
+			logger.info("No se ha encontrado curso para codigo" + codCurso + " " + e.getMessage());
+		}
+		return curso;
+	}
+
 }

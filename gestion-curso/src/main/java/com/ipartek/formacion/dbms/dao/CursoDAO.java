@@ -16,4 +16,6 @@ public interface CursoDAO extends DAOSetter {
 
 	public void delete(int codigo);
 
+	public Curso getByCodCurso(String codCurso);
+
 }

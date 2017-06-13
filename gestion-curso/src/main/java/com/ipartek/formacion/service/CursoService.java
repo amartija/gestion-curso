@@ -19,4 +19,6 @@ public interface CursoService {
 
 	public void setCursoDAO(CursoDAO cursoDao);
 
+	public Curso getByCodCurso(String codCurso);
+
 }

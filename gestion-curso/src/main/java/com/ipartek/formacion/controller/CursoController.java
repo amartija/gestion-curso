@@ -1,6 +1,8 @@
 package com.ipartek.formacion.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import org.slf4j.Logger;
@@ -120,6 +122,35 @@ public class CursoController {
 		mav.addObject("curso", curs);
 
 		return mav;
+	}
+
+	@RequestMapping("/")
+	public ModelAndView getAllDiez() {
+
+		mav = new ModelAndView("/home");
+
+		// cargar la lista de cursos
+		List<Curso> cursos = cs.getAll();
+
+		logger.info("entra en el getAll");
+		Collections.sort(cursos);
+		Collections.reverse(cursos);
+
+		List<Curso> cur = new ArrayList();
+
+		for (int i = 0; i == 10; i++) {
+
+			cur.add(i, cursos.get(i));
+
+		}
+
+		// engancharla al modelandview
+		mav.addObject("listadoCursos", cur);
+
+		logger.trace("Pasa por getAll()");
+
+		return mav;
+
 	}
 
 }

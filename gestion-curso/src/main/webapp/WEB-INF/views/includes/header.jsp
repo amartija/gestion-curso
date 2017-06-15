@@ -55,11 +55,7 @@
 	        </li>
 
 
-	        <li>
-				<a href="<c:url value='/'/>">
-						<spring:message code="menu.servicios" text="G.Servicios" />
-				</a>
-	        </li>
+
 	        <li role="separator" class="divider"></li>
 	        
 	      </ul>

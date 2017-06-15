@@ -1,0 +1,1 @@
+mysqlimport.exe --host=localhost --user=root --password= --local --default-character-set=utf8 --delete --fields-terminated-by=";" --ignore-lines=1 --verbose --columns=@ignorado,NomCurso,@ignorado,@ignorado,@ignorado,@ignorado,@ignorado,@ignorado,CodCurso --fields-enclosed-by="" --fields-escaped-by="" --lines-terminated-by="\r\n"  gestioncurso C:\desarrollo\cursos.csv 

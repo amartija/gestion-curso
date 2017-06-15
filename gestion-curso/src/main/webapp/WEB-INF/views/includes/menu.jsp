@@ -25,7 +25,39 @@
 
 	</section>
 </main>	
+<main class="container-fluid">
+	<section class="row">
+		<header class="col-xs-12"><h2><spring:message code="cursos" text=" " /></h2></header>
+		
+			<div class="row">
+				<div class="col-xs-4">Codigo Curso</div>				
+				<div class="col-xs-5">Nombre</div>
+				<div class="col-xs-3"></div>
+			</div>
+			<c:choose>
+				<c:when test="${not empty listadoCursos}">
+					<c:forEach var="curso" items="${listadoCursos}">
+						<div class="row">
+							<div class="col-xs-6">
+								<a href="<c:url value='/cursos/${curso.codigo}'/>">${curso.codCurso}</a>
+							</div>
+							<div class="col-xs-6">
+								${curso.nombre}
+				            </div>
 
+				            			
+						</div>
+					</c:forEach>
+				</c:when>
+				<c:otherwise>
+					<div class="row">
+						<p class="col-xs-12">No existen resultados</p>
+					</div>
+				</c:otherwise>
+			</c:choose>
+		</div>
+	</section>
+</main>
 
 	
 <!-- 		<script>

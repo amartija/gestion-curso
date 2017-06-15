@@ -46,8 +46,8 @@ public class CursoDAOImp implements CursoDAO {
 		jdbcCall.withProcedureName(SQL);
 
 		// crear un mapa con los parametros de procedimiento almacenado
-		SqlParameterSource in = new MapSqlParameterSource().addValue("pnombre", curso.getNombre()).addValue("pcodCurso",
-				curso.getCodCurso());
+		SqlParameterSource in = new MapSqlParameterSource().addValue("pnomCurso", curso.getNombre())
+				.addValue("pcodCurso", curso.getCodCurso());
 
 		logger.info(curso.toString());
 		// se ejecuta la consulta
@@ -96,7 +96,7 @@ public class CursoDAOImp implements CursoDAO {
 		jdbcCall.withProcedureName(SQL);
 
 		SqlParameterSource in = new MapSqlParameterSource().addValue("pcodigo", curso.getCodigo())
-				.addValue("pnombre", curso.getNombre()).addValue("pcodCurso", curso.getCodCurso());
+				.addValue("pnomCurso", curso.getNombre()).addValue("pcodCurso", curso.getCodCurso());
 
 		logger.info(curso.toString());
 

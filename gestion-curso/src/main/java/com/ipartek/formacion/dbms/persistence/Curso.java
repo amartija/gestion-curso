@@ -68,6 +68,11 @@ public class Curso implements Serializable, Comparable<Curso> {
 		return iguales;
 	}
 
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see java.lang.Comparable#compareTo(java.lang.Object)
+	 */
 	@Override
 	public int compareTo(Curso o) {
 		// TODO Auto-generated method stub
